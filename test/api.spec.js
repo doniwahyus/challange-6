@@ -25,7 +25,7 @@ describe('fail POST /auth/login', () => {
 });
 describe('POST /auth/regitser', () => {
     test('post register', async () => {
-        const response = await request(app).post('/auth/register').send({name: "kiki", email: 'opop@gmail.com', password: '1234'});;
+        const response = await request(app).post('/auth/register').send({name: "popo", email: 'jiajf@gmail.com', password: '1234'});;
         expect(response.status).toBe(201);
     })
 });
@@ -65,6 +65,19 @@ describe('POST /user_game_biodata/update', () => {
     test('post update biodata', async () => {
         const response = await request(app).post('/user_game_biodata/update')
         .send({ 
+            id: '2',
+            user_id: '1',
+            player_name: 'Paulus',
+            current_level_id: '87',
+            player_rank: 'Master'});
+        expect(response.status).toBe(404);
+    })
+});
+describe('fail POST /user_game_biodata/update', () => {
+    test('fail post update biodata', async () => {
+        const response = await request(app).post('/user_game_biodata/update')
+        .send({ 
+            id: 'chajks',
             user_id: '1',
             player_name: 'Paulus',
             current_level_id: '87',
