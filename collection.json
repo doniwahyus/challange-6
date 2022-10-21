@@ -1,0 +1,398 @@
+{
+  "item": [
+    {
+      "id": "b1f39ce1-31ed-4c88-8ab8-085a51ec99fe",
+      "name": "register",
+      "request": {
+        "url": {
+          "protocol": "http",
+          "port": "3000",
+          "path": [
+            "auth",
+            "register"
+          ],
+          "host": [
+            "localhost"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "cache-control",
+            "value": "no-cache"
+          }
+        ],
+        "method": "POST",
+        "body": {
+          "mode": "raw",
+          "raw": "{\"name\":\"doniiws\",\"email\":\"doni18@mail.com\",\"password\":\"1234\"}"
+        }
+      },
+      "response": [],
+      "event": []
+    },
+    {
+      "id": "840d6f01-ca69-482c-9512-0bf577924b2a",
+      "name": "login",
+      "request": {
+        "url": {
+          "protocol": "http",
+          "port": "3000",
+          "path": [
+            "auth",
+            "login"
+          ],
+          "host": [
+            "localhost"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "cache-control",
+            "value": "no-cache"
+          }
+        ],
+        "method": "POST",
+        "body": {
+          "mode": "raw",
+          "raw": "{\"email\":\"doni18@mail.com\",\"password\":\"1234\"}"
+        },
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "type": "any",
+              "value": "{{Authorization}}",
+              "key": "token"
+            }
+          ]
+        }
+      },
+      "response": [],
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "f40110b1-891e-4e3c-a953-02db068de1c2",
+            "type": "text/javascript",
+            "exec": [
+              "pm.environment.set('Authorization', pm.response.json().data.token);"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "f029a9e2-fa68-475e-9262-342e204b7c6f",
+      "name": "logout",
+      "request": {
+        "url": {
+          "protocol": "http",
+          "port": "3000",
+          "path": [
+            "auth",
+            "logout"
+          ],
+          "host": [
+            "localhost"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "cache-control",
+            "value": "no-cache"
+          }
+        ],
+        "method": "POST",
+        "body": {},
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "type": "any",
+              "value": "{{Authorization}}",
+              "key": "token"
+            }
+          ]
+        }
+      },
+      "response": [],
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "3a6773dc-19d2-42d0-8f6e-904abe1627bf",
+            "type": "text/javascript",
+            "exec": [
+              "pm.environment.set('Authorization', '');"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "5457f465-cf6f-4c96-a78c-e7c0d449cc64",
+      "name": "create biodata",
+      "request": {
+        "url": {
+          "protocol": "http",
+          "port": "3000",
+          "path": [
+            "user_game_biodata",
+            "create"
+          ],
+          "host": [
+            "localhost"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "cache-control",
+            "value": "no-cache"
+          },
+          {
+            "key": "Authorization",
+            "value": "{{Authorization}}"
+          }
+        ],
+        "method": "POST",
+        "body": {
+          "mode": "raw",
+          "raw": "{\"user_id\":\"1\",\"player_name\":\"Evos Keren\",\"current_level_id\":\"90\",\"player_rank\":\"Epic\"}"
+        }
+      },
+      "response": [],
+      "event": []
+    },
+    {
+      "id": "3eedac58-41f5-419d-8e99-5cbad0f77c4d",
+      "name": "update biodata",
+      "request": {
+        "url": {
+          "protocol": "http",
+          "port": "3000",
+          "path": [
+            "user_game_biodata",
+            "update"
+          ],
+          "host": [
+            "localhost"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "cache-control",
+            "value": "no-cache"
+          },
+          {
+            "key": "Authorization",
+            "value": "{{Authorization}}"
+          }
+        ],
+        "method": "PUT",
+        "body": {
+          "mode": "raw",
+          "raw": "{\"id\":\"2\",\"user_id\":\"1\",\"player_name\":\"Muh Faizi\",\"current_level_id\":\"90\",\"player_rank\":\"GM\"}"
+        }
+      },
+      "response": [],
+      "event": []
+    },
+    {
+      "id": "65912359-c2ec-437d-aa08-b6917d5e0d75",
+      "name": "delete biodata",
+      "request": {
+        "url": {
+          "protocol": "http",
+          "port": "3000",
+          "path": [
+            "user_game_biodata",
+            "delete"
+          ],
+          "host": [
+            "localhost"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "cache-control",
+            "value": "no-cache"
+          },
+          {
+            "key": "Authorization",
+            "value": "{{Authorization}}"
+          }
+        ],
+        "method": "DELETE",
+        "body": {
+          "mode": "raw",
+          "raw": "{\"id\":\"1\"}"
+        }
+      },
+      "response": [],
+      "event": []
+    },
+    {
+      "id": "0412bcde-55ce-4e2f-8304-38fc3597b12d",
+      "name": "create histori",
+      "request": {
+        "url": {
+          "protocol": "http",
+          "port": "3000",
+          "path": [
+            "user_game_history",
+            "create"
+          ],
+          "host": [
+            "localhost"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "cache-control",
+            "value": "no-cache"
+          },
+          {
+            "key": "Authorization",
+            "value": "{{Authorization}}"
+          }
+        ],
+        "method": "POST",
+        "body": {
+          "mode": "raw",
+          "raw": "{\"user_id\":\"1\",\"result\":\"Winning\",\"time\":\"12-10-2022\",\"point_rank\":\"+15\"}"
+        }
+      },
+      "response": [],
+      "event": []
+    },
+    {
+      "id": "f49d474d-d21b-4351-8a50-75f0d32a17c3",
+      "name": "update histori",
+      "request": {
+        "url": {
+          "protocol": "http",
+          "port": "3000",
+          "path": [
+            "user_game_history",
+            "update"
+          ],
+          "host": [
+            "localhost"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "cache-control",
+            "value": "no-cache"
+          },
+          {
+            "key": "Authorization",
+            "value": "{{Authorization}}"
+          }
+        ],
+        "method": "PUT",
+        "body": {
+          "mode": "raw",
+          "raw": "{\"id\":\"1\",\"user_id\":\"3\",\"result\":\"Lose\",\"time\":\"11-08-2022\",\"point_rank\":\"-15\"}"
+        }
+      },
+      "response": [],
+      "event": []
+    },
+    {
+      "id": "9f5058c7-f73b-4ae4-b32f-5cd6bb3c4bbd",
+      "name": "delete histori",
+      "request": {
+        "url": {
+          "protocol": "http",
+          "port": "3000",
+          "path": [
+            "user_game_history",
+            "delete"
+          ],
+          "host": [
+            "localhost"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "cache-control",
+            "value": "no-cache"
+          },
+          {
+            "key": "Authorization",
+            "value": "{{Authorization}}"
+          }
+        ],
+        "method": "DELETE",
+        "body": {
+          "mode": "raw",
+          "raw": "{\"id\":\"1\"}"
+        }
+      },
+      "response": [],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [],
+  "info": {
+    "_postman_id": "60ab2b1b-c9da-4ea4-9d5e-eee428e81e41",
+    "name": "Dokumentasi Challange 5",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  }
+}
