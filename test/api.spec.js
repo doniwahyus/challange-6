@@ -23,12 +23,18 @@ describe('fail POST /auth/login', () => {
         expect(response.status).toBe(404);
     })
 });
-// describe('POST /auth/regitser', () => {
-//     test('post register', async () => {
-//         const response = await request(app).post('/auth/register').send({name: "user", username: 'user@user.user', password: 'useruser'});;
-//         expect(response.status).toBe(500);
-//     })
-// });
+describe('POST /auth/regitser', () => {
+    test('post register', async () => {
+        const response = await request(app).post('/auth/register').send({name: "kiki", email: 'opop@gmail.com', password: '1234'});;
+        expect(response.status).toBe(201);
+    })
+});
+describe('fail POST /auth/regitser', () => {
+    test('fail post register', async () => {
+        const response = await request(app).post('/auth/register').send({name: "user", email: 'user.user', password: 'useruser'});;
+        expect(response.status).toBe(400);
+    })
+});
 describe('GET /auth/whoami', () => {
     test('get whoami', async () => {
         const response = await request(app)
@@ -76,6 +82,14 @@ describe('DELETE /user_game_biodata/delete', () => {
         expect(response.status).toBe(404);
     })
 });
+describe('fail DELETE /user_game_biodata/delete', () => {
+    test('fail delete biodata', async () => {
+        const response = await request(app).post('/user_game_biodata/delete')
+        .send({ 
+            id: 'svjkdv'});
+        expect(response.status).toBe(404);
+    })
+});
 
 //HISTORY
 
@@ -92,12 +106,25 @@ describe('POST /user_game_history/create', () => {
     })
 });
 
+
 //UPDATE HISTORY
 describe('POST /user_game_history/update', () => {
     test('post update biodata', async () => {
         const response = await request(app).post('/user_game_history/update')
         .send({ 
             id: '1',
+            user_id: '3',
+            result: 'Lose',
+            time: '11-08-2022',
+            point_rank: '-15'});
+        expect(response.status).toBe(404);
+    })
+});
+describe('fail POST /user_game_history/update', () => {
+    test('fail post update biodata', async () => {
+        const response = await request(app).post('/user_game_history/update')
+        .send({ 
+            id: 'hhh',
             user_id: '3',
             result: 'Lose',
             time: '11-08-2022',
@@ -112,6 +139,14 @@ describe('DELETE /user_game_history/delete', () => {
         const response = await request(app).post('/user_game_history/delete')
         .send({ 
             id: '1'});
+        expect(response.status).toBe(404);
+    })
+});
+describe('fail DELETE /user_game_history/delete', () => {
+    test('fail delete biodata', async () => {
+        const response = await request(app).post('/user_game_history/delete')
+        .send({ 
+            id: 'sjvnsb'});
         expect(response.status).toBe(404);
     })
 });

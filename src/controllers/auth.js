@@ -20,6 +20,12 @@ module.exports = {
             }
 
             const encryptPassword = await bcrypt.hash(password, 10);
+            let regex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+            if (!email.match(regex)){
+                return res.status(400).json({
+                    message: 'email not match'
+                })
+            };
             const user = await User.create({
                 name,
                 email,
@@ -32,7 +38,7 @@ module.exports = {
                 message: 'Succes',
                 data: {
                     email: user.email,
-                    name: user.email
+                    name: user.name
                 }
             });
         }catch(err){
